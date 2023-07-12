@@ -9,6 +9,9 @@ gem "rails", "~> 7.0.6"
 # For registration and login of users.
 gem 'devise'
 
+# For authorization
+gem 'cancancan'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
