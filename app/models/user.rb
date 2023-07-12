@@ -6,4 +6,5 @@ class User < ApplicationRecord
   
   validates :name, presence: true
   has_many :expense, foreign_key: 'author_id', dependent: :destroy
+  has_many :category, foreign_key: 'author_id', dependent: :destroy
 end
