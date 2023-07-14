@@ -13,9 +13,10 @@
   </head>
 
   <body class='bg-neutral-50'>
+    <%= render "shared/navbar" %>
     <p class='notice'><%= notice %></p>
     <p class='alert'><%= alert %></p>
-    <main class='container px-4'>
+    <main>
       <%= yield %>
     </main>
   </body>

@@ -1,1 +1,6 @@
+<% content_for :back_path, root_path%>
+<% content_for :page_name, "CATEGORIES" %>
+<% content_for :nav_button do%>
+<%= button_to "Logout", destroy_user_session_path, method: :delete,class: "nav-link text-white" %>
+<%end%>
 <h1 class='text-2xl text-center text-pink-600'>Hello category index</h1>
