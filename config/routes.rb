@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :expenses, only: [:index, :new, :create, :destroy]
   end
   # Defines the root path route ("/")
-  root "categories#index"
+  root "splashs#index"
 end
