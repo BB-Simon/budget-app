@@ -14,9 +14,9 @@
 
   <body class='bg-neutral-50'>
     <%= render "shared/navbar" %>
-    <p class='notice'><%= notice %></p>
-    <p class='alert'><%= alert %></p>
     <main>
+      <p class='w-full text-center'><%= notice %></p>
+      <p class='w-full text-center'><%= alert %></p>
       <%= yield %>
     </main>
   </body>

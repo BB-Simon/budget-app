@@ -1,0 +1,22 @@
+<div class="relative bg-white shadow rounded">
+  <div class="grid grid-cols-4 p-4">
+    <div class="w-full z-50 aspect-[4/3]">
+      <%= 
+        image_tag category.icon, 
+        alt: "#{category.name} icon", 
+        class: "w-full h-full rounded"
+      %>
+    </div>
+    <div class="col-span-3 flex flex-col justify-between pl-4">
+      <div class="grow flex items-center justify-between">
+        <h5 class="text-dark-4 text-lg font-medium"><%= category.name %></h5>
+        <p class="text-dark-1 text-lg font-semibold">$<%=category.expenses.sum {|expense| expense[:amount]}%></p>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 w-full bg-neutral-50 py-1 px-4 md:py-4">
+    <p class="ml-[25%] pl-4 text-sm text-dark-4 opacity-60">
+      <%=category.created_at.strftime('%d %b %Y')%>
+    </p>
+  </div>
+</div>

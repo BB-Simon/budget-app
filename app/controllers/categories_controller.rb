@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = category.new
+    @category = Category.new
   end
 
   def create
