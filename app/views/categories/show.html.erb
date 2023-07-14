@@ -5,20 +5,41 @@
 <%end%>
 
 <section class="p-4">
-  <%= render "shared/category_card", category: @category%>
+  <article class="bg-white rounded p-4">
+    <div class='grid grid-cols-1'>
+      <div class="w-full z-50 grid grid-cols-4">
+        <%= 
+          image_tag @category.icon, 
+          alt: "#{@category.name} icon", 
+          class: "w-full h-full rounded"
+        %>
+        <h3 class="col-span-3 ml-4 py-4 text-2xl text-dark-3 font-semibold"><%= @category.name %></h3>
+      </div>
+      <p class="text-base text-dark-4 my-5"><%= @category.name %> is lorem ipsum dolor sit amet, consectetur adipis, ipsum dolor sit amet, consectetur adipis</p>
+    </div>
+    <div class="w-full h-[1px] bg-dark-4"></div>
+  
+    <ul class="my-5">
+      <% @expenses.each do |expense|%>
+        <li class="">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-medium text-dark-2"><%= expense.name %></h2>
+            <p class="text-lg font-medium text-dark-2">$<%= expense.amount %></p>
+          </div>
+          <div class="flex items-center mt-3">
+            <span class="text-xs text-dark-4 mr-1"><i class="fa-solid fa-calendar-days"></i></span>
+            <span class="text-xs text-dark-4"><%=expense.created_at.strftime("%d %b %Y at %l:%M %P")%></span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="w-full h-[1px] bg-dark-4"></div>
+    <div class="my-5 flex items-center justify-between">
+      <span class="uppercase text-dark-1 text-lg font-semibold">Total Expenses</span>
+      <p class="text-dark-1 text-lg font-semibold">$<%=@category.expense.sum {|expense| expense[:amount]}%></p>
+    </div>
+  </article>
 
-  <ul class="list-group">
-    <li class="list-group-item"><h2>Expenses</h2></li>
-    <% @expenses.each do |expense|%>
-      <li class="list-group-item">
-        <div class="d-flex justify-content-between">
-        <h2><%= expense.name %></h2>
-        <div class="proxima-bold">$<%= expense.amount %></div>
-        </div>
-        <div><%=expense.created_at.strftime("%d %b %Y at %l:%M %P")%></div>
-      </li>
-    <% end %>
-  </ul>
 
   <div class="fixed bottom-0 left-0 z-[100] bg-light-green w-full p-4">
     <%= 
