@@ -1,0 +1,31 @@
+<% content_for :back_path, root_path%>
+<% content_for :page_name, "EXPENSES" %>
+<% content_for :nav_button do%>
+<%= button_to "Logout", destroy_user_session_path, method: :delete,class: "nav-link text-white" %>
+<%end%>
+
+<section class="p-4">
+  <%= render "shared/category_card", category: @category%>
+
+  <ul class="list-group">
+    <li class="list-group-item"><h2>Expenses</h2></li>
+    <% @expenses.each do |expense|%>
+      <li class="list-group-item">
+        <div class="d-flex justify-content-between">
+        <h2><%= expense.name %></h2>
+        <div class="proxima-bold">$<%= expense.amount %></div>
+        </div>
+        <div><%=expense.created_at.strftime("%d %b %Y at %l:%M %P")%></div>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="fixed bottom-0 left-0 z-[100] bg-light-green w-full p-4">
+    <%= 
+      button_to "Add Expense", 
+      new_category_expense_path(@category), 
+      method: :get, 
+      class: "w-full p-4 border border-white rounded text-white text-1xl uppercase" 
+    %>
+  </div>
+</section>
