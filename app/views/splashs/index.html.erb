@@ -1,0 +1,23 @@
+<% content_for :nav_bar, "navbar not required"%>
+
+<section class='h-screen px-4 flex flex-col justify-between'>
+  <div class='grow flex items-center justify-center'>
+    <h1 class='logo text-4xl text-dark-1 text-center'>Snapscan</h1>
+  </div>
+  <ul>
+    <li class="nav-item">
+      <%= 
+        link_to "Log in", 
+        new_user_session_path, 
+        class: "bg-main-blue p-4 w-full text-center text-white block rounded uppercase font-medium" 
+      %>
+    </li>
+    <li class="nav-item">
+      <%= 
+        link_to "Sign Up", 
+        new_user_registration_path, 
+        class: "w-full block uppercase text-center p-4 font-medium text-dark-3" 
+      %>
+    </li>
+  </ul>
+</section>

@@ -1,0 +1,52 @@
+<% content_for :back_path, root_path%>
+<% content_for :page_name, "EXPENSES" %>
+<% content_for :nav_button do%>
+<%= button_to "Logout", destroy_user_session_path, method: :delete,class: "nav-link text-white" %>
+<%end%>
+
+<section class="p-4 mb-28">
+  <article class="bg-white rounded p-4">
+    <div class='grid grid-cols-1'>
+      <div class="w-full z-50 grid grid-cols-4">
+        <%= 
+          image_tag @category.icon, 
+          alt: "#{@category.name} icon", 
+          class: "w-full h-full rounded"
+        %>
+        <h3 class="col-span-3 ml-4 py-4 text-2xl text-dark-3 font-semibold"><%= @category.name %></h3>
+      </div>
+      <p class="text-base text-dark-4 my-5"><%= @category.name %> is lorem ipsum dolor sit amet, consectetur adipis, ipsum dolor sit amet, consectetur adipis</p>
+    </div>
+    <div class="w-full h-[1px] bg-dark-4"></div>
+  
+    <ul class="my-5">
+      <% @expenses.each do |expense|%>
+        <li class="">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-medium text-dark-2"><%= expense.name %></h2>
+            <p class="text-lg font-medium text-dark-2">$<%= expense.amount %></p>
+          </div>
+          <div class="flex items-center mt-3">
+            <span class="text-xs text-dark-4 mr-1"><i class="fa-solid fa-calendar-days"></i></span>
+            <span class="text-xs text-dark-4"><%=expense.created_at.strftime("%d %b %Y at %l:%M %P")%></span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="w-full h-[1px] bg-dark-4"></div>
+    <div class="my-5 flex items-center justify-between">
+      <span class="uppercase text-dark-1 text-lg font-semibold">Total Expenses</span>
+      <p class="text-dark-1 text-lg font-semibold">$<%=@category.expense.sum {|expense| expense[:amount]}%></p>
+    </div>
+  </article>
+
+
+  <div class="fixed bottom-0 left-0 z-[100] bg-light-green w-full p-4">
+    <%= 
+      button_to "Add Expense", 
+      new_category_expense_path(@category), 
+      method: :get, 
+      class: "w-full p-4 border border-white rounded text-white text-1xl uppercase" 
+    %>
+  </div>
+</section>

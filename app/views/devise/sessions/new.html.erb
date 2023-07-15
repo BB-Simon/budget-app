@@ -1,0 +1,35 @@
+<% content_for :back_path, root_path %>
+<% content_for :page_name, "LOGIN" %>
+
+<% content_for :nav_button do %>
+  <%= button_tag "Log in", type: "submit", form: "new_user", class: "nav-link text-white" %>
+<% end %>
+
+<section class="my-4 opacity-60">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
+      <%= 
+        f.email_field :email,
+        placeholder: "Email",  
+        autocomplete: "email",
+        class: 'w-full border-b-0 border-l-0 border-r-0 py-3 text-base text-dark-3 border-t-[0.5px] border-dark-4'
+      %>
+    </div>
+
+    <div class="field">
+      <%= 
+        f.password_field :password,
+        placeholder: "Password",
+        autocomplete: "current-password",
+        class: 'w-full border-l-0 border-r-0 py-3 text-base text-dark-3 border-y-[0.5px] border-dark-4'
+      %>
+    </div>
+  <% end %>
+
+  <div class="my-5 w-full flex items-center justify-center">
+    <span class="mx-auto">
+      <%= render "devise/shared/links" %>
+    </span>
+  </div>
+
+</section>

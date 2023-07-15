@@ -1,0 +1,23 @@
+<% unless content_for?(:nav_bar) %>
+<nav class="bg-main-blue w-full h-14 px-4 flex items-center justify-between text-white">
+  <% if content_for?(:page_name) %>
+  <%= link_to yield(:back_path), class: "text-2xl block" do %>
+  <i class="fas fa-arrow-left"></i>
+  <% end %>
+  <%end%>
+
+  <% if content_for?(:page_name) %>
+  <div class="d-flex justify-content-center flex-grow-1">
+    <span class="navbar-text text-white proxima-semi-bold"><%=yield(:page_name)%></span>
+  </div>
+  <%end%>
+  
+  <% if content_for?(:nav_button) %>
+  <ul class="">
+    <li class="nav-item proxima-semi-bold">
+      <%= yield(:nav_button)%> 
+    </li>
+  </ul>
+  <%end%>
+</nav>
+<%end%>

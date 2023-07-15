@@ -1,0 +1,50 @@
+<% content_for :back_path, category_path(@category) %>
+<% content_for :page_name, "ADD EXPENSE" %>
+<% content_for :nav_button do%>
+<%= button_to "Logout", destroy_user_session_path, method: :delete,class: "nav-link text-white" %>
+<%end%>
+
+<section class="py-4">
+  <%= form_with model: ([@category, @expense]) do |form|%>
+
+  <div class="">
+    <%=
+      form.text_field :name, 
+      required: true,
+      placeholder: "Name",
+      class: 'w-full border-b-0 border-l-0 border-r-0 py-3 text-base text-dark-3 border-t-[0.5px] border-dark-4' 
+    %>
+  </div>
+
+  <div class=""> 
+    <%=
+      form.number_field :amount, 
+      placeholder: "Amount",
+      value: nil,
+      required: true, 
+      min: 1,
+      class: 'w-full border-b-0 border-l-0 border-r-0 py-3 text-base text-dark-3 border-t-[0.5px] border-dark-4'
+    %>
+  </div>
+
+  <div class="">
+    <%= 
+      form.select :category_ids, 
+      current_user.category.pluck(:name, :id),
+      {:prompt => "Select a category", :disabled => true},
+      {
+        class: 'w-full border-l-0 border-r-0 py-3 text-base text-dark-3 border-y-[0.5px] border-dark-4',
+        required: true,
+        multiple: true,
+      }
+    %>
+  </div>
+
+  <div class="m-3">
+    <%=
+      form.submit "Create", 
+      class: "bg-light-green py-2 px-5 text-center text-white block rounded uppercase font-medium"
+    %>
+  </div>
+  <%end%>
+</section>

@@ -1,0 +1,38 @@
+<% content_for :back_path, root_path%>
+<% content_for :page_name, "CREATE CATEGORIES" %>
+<% content_for :nav_button do%>
+<%= button_to "Logout", destroy_user_session_path, method: :delete,class: "nav-link text-white" %>
+<%end%>
+
+<section class='my-4 opacity-60'>
+  <%= form_with model: @category do |form|%>
+
+  <div>
+    <%= 
+      form.text_field :icon, 
+      class: "form-control", 
+      placeholder: "Icon link", 
+      required: true, 
+      pattern: "^(http|https)://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(\/.*)?$",
+      class: 'w-full border-b-0 border-l-0 border-r-0 py-3 text-base text-dark-3 border-t-[0.5px] border-dark-4'
+    %>
+  </div>
+
+  <div>
+    <%=
+      form.text_field :name, 
+      class: "form-control", 
+      placeholder: "Category name", 
+      required: true,
+      class: 'w-full border-l-0 border-r-0 py-3 text-base text-dark-3 border-y-[0.5px] border-dark-4'
+    %>
+  </div>
+
+  <div class='m-3'>
+    <%=
+      form.submit "Create", 
+      class: "bg-main-blue py-2 px-5 text-center text-white block rounded uppercase font-medium"
+    %>
+  </div>
+  <%end%>
+</section>
